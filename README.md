@@ -1,7 +1,7 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 
-## Como Excutar o APP em ambiente de desenvolvimento após clonar o repositório:
+## Como Executar o APP em ambiente de desenvolvimento após clonar o repositório:
 
 Resumo e Ordem de Execução Recomendada
     
