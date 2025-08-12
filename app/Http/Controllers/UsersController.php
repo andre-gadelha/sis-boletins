@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str; 
 
 class UsersController
 {
@@ -66,17 +68,23 @@ class UsersController
     public function store(UsersFormRequest $request)
     {
         $data = $request->except(['_token']);
-        $data['password'] = Hash::make($data['password']);
+        $data['password'] = Hash::make(Str::random(8));//Gera uma senha aleatória temporária
         $data['status'] = $request['status'];
         $data['profile'] = $request['profile'];
-
-        //verificar porque o hash não está funcionando
-
+        
+        //Aqui eu crio o usuário, mas não loga de imediato
         $user = User::create($data);
-        //para logar de imediato
-        //Auth::login($user);
-
-        return to_route('users.index');
+        
+        // Envia link de reset
+        $resetResult = $this->sendPasswordResetLink($user->email);
+        
+        if ($resetResult['success']) {
+            return to_route('users.index')->with('mensagem.sucesso', 
+                'Usuário criado com sucesso! Link de definição de senha enviado por email.');
+        } else {
+            return to_route('users.index')->with('errors', 
+                'Usuário criado, mas: ' . $resetResult['message']);
+        }
     }
 
     public function update(User $user, UsersFormRequest $request)
@@ -86,10 +94,9 @@ class UsersController
             ->withErrors("O seu usuário não tem permissão para editar..");
         }
         else{
-            //converto o password para hash
-            $_data['password'] = Hash::make($request['password']);
-            $_data['status'] = $request['status'];
-            $_data['profile'] = $request['profile'];
+            $_data = $request->except(['_token', '_method']);
+            //$_data['status'] = $request['status'];
+            //$_data['profile'] = $request['profile'];
             $user->fill($_data);
             $user->save();
             return to_route('users.index')
@@ -128,4 +135,28 @@ class UsersController
         return to_route('users.index')
             ->with('mensagem.sucesso', "Status do usuário '{$user->name}' atualizado com sucesso");                
     }
+
+    /**
+     * Método para enviar link de reset de senha
+     */
+    private function sendPasswordResetLink($email)
+    {
+        try {
+            $status = Password::sendResetLink(['email' => $email]);
+            
+            return [
+                'success' => $status == Password::RESET_LINK_SENT,
+                'message' => __($status),
+                'status' => $status
+            ];
+            
+        } catch (\Exception $e) {
+            return [
+                'success' => false,
+                'message' => 'Erro ao enviar email: ' . $e->getMessage(),
+                'status' => null
+            ];
+        }
+    }
+
 }

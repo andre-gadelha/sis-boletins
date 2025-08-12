@@ -27,7 +27,7 @@ class UsersFormRequest extends FormRequest
         return [
             'name' => 'max:255|required',
             'email' => 'max:255|email:rfc|required',
-            'password' => 'max:255|required',
+            //'password' => 'max:255|nullable',
             'status' => Rule::in(['actived', 'inactived']),
             'profile' => Rule::in(['administrator', 'user']),
         ];
@@ -36,12 +36,12 @@ class UsersFormRequest extends FormRequest
     {
         return [
             'name.max' => 'Você excedeu a quantidade máxima de caracteres permitidos 255 no campo Nome.',
-            'name.required' => 'O campo onde se inseri o Nome é obrigatório .',            
+            'name.required' => 'O campo Nome é obrigatório .',            
             'email.max' => 'Você excedeu a quantidade máxima de caracteres permitidos 255 no campo Email.',
-            'email.required' => 'O campo onde se inseri o Email é obrigatório .',
+            'email.required' => 'O campo Email é obrigatório .',
             'email.email' => 'Insira um Email válido por favor!',
-            'password.max' => 'Você excedeu a quantidade máxima de caracteres permitidos 255 no campo Senha.',
-            'password.required' => 'O campo onde se inseri a Senha é obrigatório .',
+            //'password.max' => 'Você excedeu a quantidade máxima de caracteres permitidos 255 no campo Senha.',
+            //'password.required' => 'O campo onde se insere a Senha é obrigatório .',
         ];
     }
 }

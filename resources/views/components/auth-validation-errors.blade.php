@@ -3,7 +3,7 @@
 @if ($errors->any())
     <div {{ $attributes }}>
         <div class="font-medium text-red-600">
-            {{ __('O que é isso militar? Alguma coisa está errada.') }}
+            {{ __('Alguma coisa está errada.') }}
         </div>
 
         <ul class="mt-3 list-disc list-inside text-sm text-red-600">

@@ -49,13 +49,13 @@
                     value="{{ $user->status }}">Inativo</option>
                   </select>
             </div>
-
+            <!--
             <div class="col">
                 <label for="password" class="form-label">Senha</label>
                 <input type="password" name="password" id="password" class="form-control"
                 value="">
             </div>
-
+            -->
         </div>
     @else
         <div class="form-row">
@@ -84,12 +84,12 @@
                     <option value="inactived">Inativo</option>
                   </select>
             </div>
-
+            <!--
             <div class="col">
                 <label for="password" class="form-label">Senha</label>
                 <input type="password" name="password" id="password" class="form-control">
             </div>
-
+            -->
         </div>
     @endif
 
