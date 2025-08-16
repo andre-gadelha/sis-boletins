@@ -15,10 +15,19 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 @auth
+                    <!-- Regras para apresentar o link para Dashboard -->
+                    <!-- Se for qualquer Admin -->
+                    @can('is_admin_all')    
+                        <a href="{{ route('dashboard') }}" class="btn btn-link">
+                            <i class="bi bi-list"></i> Menu
+                        </a>
+                    @endcan
+
                     <form action="{{ route('logout') }}" method="post">
+                        
                         @csrf
                         <button class="btn btn-link">
-                            Logout
+                            <i class="bi bi-box-arrow-right"></i> Logout
                         </button>
                     </form>
                 @endauth

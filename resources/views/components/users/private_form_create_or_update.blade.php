@@ -19,18 +19,33 @@
             <div class="col">
                 <label for="profile" class="form-label">Perfil</label>
                 <select class="form-control" name="profile" id="profile">
-                    <option 
-                    @if ($user->profile=='administrator')
-                        selected                        
-                    @endif
-                    value="administrator">administrator</option>
                     
                     <option
                     @if ($user->profile=='user')
                         selected                        
                     @endif
                     value="user">Usuário</option>
-                  </select>
+                    
+                    <option 
+                    @if ($user->profile=='administrator')
+                        selected                        
+                    @endif
+                    value="administrator">administrator</option>
+                    
+                    <option 
+                    @if ($user->profile=='adminBoletins')
+                        selected                        
+                    @endif
+                    value="adminBoletins">Admin Boletins</option>
+
+                    <option 
+                    @if ($user->profile=='adminUsuarios')
+                        selected                        
+                    @endif
+                    value="adminUsuarios">Admin Usuários</option>
+                
+                </select>
+
             </div>
             
             <div class="col">
@@ -72,8 +87,10 @@
             <div class="col">
                 <label for="profile" class="form-label">Perfil</label>
                 <select class="form-control" name="profile" id="profile">
-                    <option value="administrator" selected>Administrador</option>                    
-                    <option value="user">Usuário</option>
+                    <option value="user" selected>Usuário</option>
+                    <option value="administrator">Administrador Geral</option>
+                    <option value="adminBoletins">Admin Boletins</option>                    
+                    <option value="adminUsuarios">Admin Usuários</option>
                   </select>
             </div>
 

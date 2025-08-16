@@ -43,4 +43,8 @@ Resumo e Ordem de Execução Recomendada
     php artisan db:seed
     (Isso irá popular o seu banco de dados com dados de teste, permitindo que você navegue pela aplicação e teste as funcionalidades sem precisar cadastrar tudo manualmente).
 
+6. Caso o pdf-to-text não esteja configurado no PHP instalado no seu sistema operacional:
+
+   Verificar instalação do Poppler;
+
 Seguindo esses passos, seu projeto estará configurado e pronto para ser executado com o comando php artisan serve.

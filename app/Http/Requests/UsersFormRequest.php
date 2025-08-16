@@ -29,7 +29,7 @@ class UsersFormRequest extends FormRequest
             'email' => 'max:255|email:rfc|required',
             //'password' => 'max:255|nullable',
             'status' => Rule::in(['actived', 'inactived']),
-            'profile' => Rule::in(['administrator', 'user']),
+            'profile' => Rule::in(['user','administrator', 'adminBoletins', 'adminUsuarios']),
         ];
     }
     public function messages()
